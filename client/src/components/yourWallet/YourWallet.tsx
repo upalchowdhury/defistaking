@@ -1,7 +1,7 @@
 import {Token} from "../Main"
 
 interface YourWalletProps {
-    supportedToken
+    supportedToken: Array<YourWalletProps
 }
 
 
