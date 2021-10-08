@@ -86,9 +86,20 @@ def add_allowed_tokens(token_farm, dict_of_allowed_tokens, account):
 #     return token_farm
 
 
+def update_front_end():
+    copy_folders_to_front_end("./build", "./client/src/chain-info")
+    with open("brownie-config.yaml", "r") as brownie_config:
+        config_dict = yaml.load(brownie_config, Loader=yaml.FullLoader)
+        with open("./client/src/brownie-config.json", "w") as brownie_config_json:
+            json.dump(config_dict, brownie_config_json)
+        
+def copy_folders_to_front_end(src, dest):
+    if os.path.exists(dest):
+        shutil.rmtree(dest)
+    shutil.copytree(src, dest)
 
-
+   
 
 def main():
-    deploy_token_farm_and_dapp_token(front_end_update=False)
+    deploy_token_farm_and_dapp_token(front_end_update=True)
     
